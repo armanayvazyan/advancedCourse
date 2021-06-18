@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        FinderThread finder = new FinderThread(Path.of("/Users/armanayvazyan/Desktop"), "FinderThread");
+        FinderThread finder = new FinderThread("FinderThread", Path.of("/Users/armanayvazyan/Desktop"));
         PrinterThread printerThread = new PrinterThread("PrinterThread", finder);
 
         finder.start();
@@ -14,6 +14,7 @@ public class Main {
 
         finder.join();
         printerThread.join();
+
         System.out.println("Total count of items: " + finder.getCount());
     }
 }

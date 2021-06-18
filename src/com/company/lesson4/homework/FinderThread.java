@@ -9,8 +9,7 @@ public class FinderThread extends Thread {
     private int count = 0;
     private String path;
 
-
-    public FinderThread(Path path, String name) {
+    public FinderThread(String name, Path path) {
         this.path = path.toString();
         this.setName(name);
     }
