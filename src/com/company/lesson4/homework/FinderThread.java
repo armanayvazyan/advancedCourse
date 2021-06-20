@@ -5,7 +5,7 @@ import java.nio.file.Path;
 
 public class FinderThread extends Thread {
 
-    private long size = 0;
+    private volatile long size = 0;
     private int count = 0;
     private String path;
 
