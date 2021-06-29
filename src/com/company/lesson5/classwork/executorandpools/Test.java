@@ -18,10 +18,6 @@ public class Test {
 
         String s = submit.get();
         System.out.println(s +" End main");
-
-
-
-
     }
 
 
