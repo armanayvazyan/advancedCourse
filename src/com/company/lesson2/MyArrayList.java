@@ -5,25 +5,25 @@ public class MyArrayList<T> implements MyList<T>{
     private static final int CAPACITY = 4;
     private Object[] data;
 
-    private int size;
+    private int capacity;
     private int index;
 
     public MyArrayList() {
         data = new Object[CAPACITY];
-        size = CAPACITY;
+        capacity = CAPACITY;
     }
 
     @Override
     public void add(T obj) {
-        if(index == size-1){
+        if(index == capacity){
             increaseSize();
         }
         data[index++] = obj;
     }
 
     private void increaseSize() {
-        size = size + CAPACITY;
-        Object[] newData = new Object[size];
+        capacity = capacity + CAPACITY;
+        Object[] newData = new Object[capacity];
         System.arraycopy(data, 0, newData, 0, data.length);
         data = newData;
     }
@@ -41,35 +41,29 @@ public class MyArrayList<T> implements MyList<T>{
         }
     }
 
-    @Override
-    public void remove(int i) {
-        checkIndex(i);
-        for (int j = ++i; j <= index; j++) {
-            data[j-1] = data[j];
-        }
-        data[index-1] = null;
-        index--;
+@Override
+public void remove(int i) {
+    checkIndex(i);
+    for (int j = i; j < index - 1; j++) {
+        data[j] = data[j + 1]; 
     }
+    data[index - 1] = null; 
+    index--;             
+}
 
-    @Override
-    public void remove(T obj) {
-        boolean reached = false;
-        for (int i = 0; i < index -1; i++) {
-            if (obj != null) {
-                if (obj.equals(data[i])) {
-                    reached = true;
-                }
-            } else {
-                if (get(i) == null) ;
-                reached = true;
+   @Override
+   public void remove(T obj) {
+    for (int i = 0; i < index; i++) {
+        if ((obj == null && data[i] == null) || (obj != null && obj.equals(data[i]))) {
+            for (int j = i; j < index - 1; j++) {
+                data[j] = data[j + 1];
             }
-            if (reached) {
-                data[i] = data[i + 1];
-            }
+            data[index - 1] = null;
+            index--;
+            return;
         }
-        data[index - 1] = null;
-        index--;
     }
+}
 
     @Override
     public int size() {
