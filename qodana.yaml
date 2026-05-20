@@ -3,7 +3,7 @@
 ####################################################################################################################
 
 version: "1.0"
-linter: qodana-rust:2026.1-eap
+linter: qodana-rust
 profile:
   name: qodana.recommended
 include:
